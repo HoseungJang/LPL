@@ -1,0 +1,7 @@
+{
+  "name": "lpl",
+  "main": "index.tsx",
+  "scripts": {
+  },
+  "license": "MIT"
+}
