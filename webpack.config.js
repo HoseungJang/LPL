@@ -17,7 +17,11 @@ module.exports = (env) => {
     entry: "./src/index.tsx",
     output: {
       filename: "bundle.js",
-      path: path.resolve("./build")
+      path: path.resolve("./build"),
+    },
+    resolve: {
+      modules: ["node_modules"],
+      extensions: [".ts", ".tsx", ".js"],
     },
     devServer,
     mode,
@@ -25,14 +29,14 @@ module.exports = (env) => {
       rules: [
         {
           test: /\.(ts|tsx)$/,
-          use: ["babel-loader"],
+          use: ["babel-loader", "ts-loader"],
         },
       ]
     },
     plugins: [
       new HtmlWebPackPlugin({
         template: "./public/index.html",
-        filename: "index.html"
+        filename: "index.html",
       }),
       new CleanWebpackPlugin()
     ]
