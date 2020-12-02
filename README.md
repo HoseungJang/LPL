@@ -4,7 +4,11 @@ LPL은 유튜브 비디오, 사운드클라우드 음악 등으로 구성하는 
 
 LPL이라는 이름은 ```Listening, Playing, Listening```에서 가져왔습니다. 여러분들은 그저 가져온 음악을 리스트에 추가하고, 재생하고, 들으시면 됩니다.
 
+LPL은 데스크탑만 지원합니다.
+
 #### English
 LPL is a custom playlist can composed of Youtube videos, SoundCloud music, etc.
 
 The name "LPL" is derived from ```Listing, Playing, Listening```. You just list music of your choice, and play it, and listen to it.
+
+LPL supports only desktop.
