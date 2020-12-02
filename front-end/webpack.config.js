@@ -10,6 +10,7 @@ module.exports = (env) => {
     contentBase: path.resolve("./build"),
     index: "index.html",
     port: 3000,
+    open: true,
     historyApiFallback: true,
   } : undefined;
 
