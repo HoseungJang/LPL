@@ -5,7 +5,7 @@ export const Main: React.FC = ({ children }) => {
   return <Container>{children}</Container>;
 };
 
-const Container = styled.div`
+const Container = styled.main`
   width: 100%;
 
   display: flex;
