@@ -10,7 +10,7 @@ export const Header: React.FC<{ toggleTheme: () => void }> = ({ toggleTheme }) =
   );
 };
 
-const Container = styled.div`
+const Container = styled.header`
   width: 100%;
   height: 70px;
 
