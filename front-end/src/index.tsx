@@ -1,6 +1,26 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { createGlobalStyle } from "styled-components";
 
-import { App } from "./routes";
+import { App } from "./App";
 
-ReactDOM.render(<App />, document.getElementById("main"));
+const GlobalStyle = createGlobalStyle`
+  html, body {
+    margin: 0;
+    padding: 0;
+
+    font-size: 20px;
+
+    * {
+      transition: all 0.3s;
+    }
+  }
+`;
+
+ReactDOM.render(
+  <>
+    <GlobalStyle />
+    <App />
+  </>,
+  document.getElementById("main")
+);
