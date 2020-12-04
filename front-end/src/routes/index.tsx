@@ -5,7 +5,7 @@ import { Playlist } from "../pages/Playlist";
 import { Login } from "../pages/Login";
 import { NotFound } from "../pages/NotFound";
 
-export const Main: React.FC = () => {
+export const App: React.FC = () => {
   return (
     <BrowserRouter>
       <Switch>
