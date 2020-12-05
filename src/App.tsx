@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import { ThemeProvider } from "styled-components";
 
 import { Header } from "./components/Layout/Header";
 import { Main } from "./components/Layout/Main";
