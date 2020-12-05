@@ -2,7 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { createGlobalStyle } from "styled-components";
 
-import { App } from "./App";
+import { Header } from "./components/Layout/Header";
+import { Main } from "./components/Layout/Main";
+import { Playlist } from "./Playlist";
 
 const GlobalStyle = createGlobalStyle`
   html, body {
@@ -10,17 +12,16 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
 
     font-size: 20px;
-
-    * {
-      transition: all 0.3s;
-    }
   }
 `;
 
 ReactDOM.render(
   <>
     <GlobalStyle />
-    <App />
+    <Header />
+    <Main>
+      <Playlist />
+    </Main>
   </>,
   document.getElementById("main")
 );
