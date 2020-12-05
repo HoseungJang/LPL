@@ -1,17 +1,7 @@
-import React, { useRef } from "react";
-import ReactPlayer from "react-player";
+import React from "react";
 
-import { useThumbnail } from "./hooks/useThumbnail";
+import { Player } from "./components/Player";
 
 export const Playlist: React.FC = () => {
-  const ref = useRef<ReactPlayer>(null);
-
-  const query = useThumbnail("V4p8He3vP40");
-
-  return (
-    <>
-      {!query.isLoading && <img src={query.url} />}
-      <ReactPlayer ref={ref} url={"https://youtu.be/V4p8He3vP40"} loop={true} />
-    </>
-  );
+  return <Player />;
 };
