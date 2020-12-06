@@ -14,7 +14,7 @@ type PlaylistContextValue = {
   removeFromPlaylist: (id: string) => void;
 };
 
-const LOCAL_STORAGE_KEY = "playlist";
+const LOCAL_STORAGE_KEY = "LPL_playlist";
 
 const PlaylistContext = createContext<PlaylistContextValue | null>(null);
 
