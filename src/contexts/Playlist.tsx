@@ -21,7 +21,6 @@ const PlaylistContext = createContext<PlaylistContextValue | null>(null);
 export const PlaylistContextProvider: React.FC = ({ children }) => {
   const [playlist, setPlaylist] = useState<Video[]>(() => {
     const json = localStorage.getItem(LOCAL_STORAGE_KEY);
-
     return json ? JSON.parse(json) : [];
   });
 
