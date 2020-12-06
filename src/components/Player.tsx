@@ -1,28 +1,27 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import ReactPlayer from "react-player";
 import styled from "styled-components";
 
-import { useThumbnail } from "../hooks/useThumbnail";
+import { Video } from "../contexts/Playlist";
 
-export const Player: React.FC = () => {
+export const Player: React.FC<{ video: Video }> = ({ video }) => {
   const [isPlayerReady, setIsPlayerReady] = useState(false);
   const [played, setPlayed] = useState(0);
 
   const playerRef = useRef<ReactPlayer | null>(null);
-
-  const query = useThumbnail("V4p8He3vP40");
 
   return (
     <Container>
       <ReactPlayer
         ref={playerRef}
         className="player"
-        url={"https://youtu.be/V4p8He3vP40"}
+        url={video.url}
         playing={true}
         onReady={() => setIsPlayerReady(true)}
         onProgress={({ played }) => setPlayed(played)}
       />
-      {!query.isLoading && <img className="player-image" src={query.url} />}
+      <h1>{video.title}</h1>
+      <img className="player-image" src={video.thumbnail} />
       <input
         className="duration-bar"
         type="range"
@@ -40,14 +39,14 @@ export const Player: React.FC = () => {
 const Container = styled.div`
   width: 600px;
 
+  > .player {
+    display: none;
+  }
+
   > .player-image {
     width: 100%;
 
     object-fit: contain;
-  }
-
-  > .player {
-    display: none;
   }
 
   > .duration-bar {

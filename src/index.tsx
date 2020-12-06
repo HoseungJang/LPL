@@ -6,6 +6,8 @@ import { Header } from "./components/Layout/Header";
 import { Main } from "./components/Layout/Main";
 import { Playlist } from "./Playlist";
 
+import { PlaylistContextProvider } from "./contexts/Playlist";
+
 const GlobalStyle = createGlobalStyle`
   html, body {
     margin: 0;
@@ -18,10 +20,12 @@ const GlobalStyle = createGlobalStyle`
 ReactDOM.render(
   <>
     <GlobalStyle />
-    <Header />
-    <Main>
-      <Playlist />
-    </Main>
+    <PlaylistContextProvider>
+      <Header />
+      <Main>
+        <Playlist />
+      </Main>
+    </PlaylistContextProvider>
   </>,
   document.getElementById("main")
 );
