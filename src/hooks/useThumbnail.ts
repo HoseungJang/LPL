@@ -3,16 +3,15 @@ import axios from "axios";
 
 type ThumbnailQueryResult =
   | {
-      isLoading: true;
-      url: undefined;
+      status: "loading";
     }
   | {
-      isLoading: false;
+      status: "success";
       url: string;
     };
 
 export const useThumbnail = (videoKey: string) => {
-  const thumbnail = useQuery(videoKey, () =>
+  const thumbnailQuery = useQuery(videoKey, () =>
     axios
       .get("https://www.googleapis.com/youtube/v3/videos", {
         params: {
@@ -25,7 +24,7 @@ export const useThumbnail = (videoKey: string) => {
   );
 
   return {
-    isLoading: thumbnail.isLoading,
-    url: thumbnail.data,
+    status: thumbnailQuery.status,
+    url: thumbnailQuery.data,
   } as ThumbnailQueryResult;
 };
