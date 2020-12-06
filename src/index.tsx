@@ -2,9 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { createGlobalStyle } from "styled-components";
 
-import { Header } from "./components/Layout/Header";
-import { Main } from "./components/Layout/Main";
-import { Playlist } from "./Playlist";
+import { App } from "./App";
 
 import { PlaylistContextProvider } from "./contexts/Playlist";
 
@@ -21,10 +19,7 @@ ReactDOM.render(
   <>
     <GlobalStyle />
     <PlaylistContextProvider>
-      <Header />
-      <Main>
-        <Playlist />
-      </Main>
+      <App />
     </PlaylistContextProvider>
   </>,
   document.getElementById("main")

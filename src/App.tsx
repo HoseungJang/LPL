@@ -4,7 +4,7 @@ import { Player } from "./components/Player";
 import { usePlaylist } from "./contexts/Playlist";
 import { useThumbnail } from "./hooks/useThumbnail";
 
-export const Playlist: React.FC = () => {
+export const App: React.FC = () => {
   const { playlist, addToPlaylist } = usePlaylist();
 
   const thumbnail = useThumbnail("V4p8He3vP40");
