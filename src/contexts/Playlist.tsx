@@ -28,7 +28,7 @@ export const PlaylistContextProvider: React.FC = ({ children }) => {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(playlist));
   }, [playlist]);
 
-  const addToPlaylist = useCallback((video: Omit<Video, "id">) => {
+  const addToPlaylist = useCallback((video: Pick<Video, "url" | "title" | "thumbnail">) => {
     const id = nanoid();
     setPlaylist((prev) => [...prev, { id, ...video }]);
   }, []);
