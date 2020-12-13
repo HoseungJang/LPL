@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { Video } from "../contexts/Playlist";
 
 export const Player: React.FC<{ video: Video }> = ({ video }) => {
-  const [isPlayerReady, setIsPlayerReady] = useState(false);
+  const [playing, setPlaying] = useState(true);
   const [played, setPlayed] = useState(0);
 
   const playerRef = useRef<ReactPlayer | null>(null);
@@ -16,11 +16,9 @@ export const Player: React.FC<{ video: Video }> = ({ video }) => {
         ref={playerRef}
         className="player"
         url={video.url}
-        playing={true}
-        onReady={() => setIsPlayerReady(true)}
+        playing={playing}
         onProgress={({ played }) => setPlayed(played)}
       />
-      <h1>{video.title}</h1>
       <img className="player-image" src={video.thumbnail} />
       <input
         className="duration-bar"
@@ -30,14 +28,18 @@ export const Player: React.FC<{ video: Video }> = ({ video }) => {
         step="any"
         value={played}
         onChange={(e) => setPlayed(parseFloat(e.target.value))}
-        onMouseUp={() => isPlayerReady && playerRef.current.seekTo(played)}
+        onMouseUp={() => playerRef.current?.seekTo(played)}
       />
     </Container>
   );
 };
 
 const Container = styled.div`
-  width: 600px;
+  position: relative;
+
+  z-index: 1;
+
+  flex: 1;
 
   > .player {
     display: none;
