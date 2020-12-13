@@ -1,11 +1,16 @@
 import React from "react";
 import styled from "styled-components";
+import classNames from "classnames";
 
-export const Background: React.FC<{ imageURL: string }> = ({ imageURL }) => {
-  return <Container imageURL={imageURL} />;
+import { Color } from "../constants/color";
+
+export const Background: React.FC<{ imageURL: string | null }> = ({ imageURL }) => {
+  return (
+    <Container className={classNames({ "image-background": !!imageURL })} imageURL={imageURL} />
+  );
 };
 
-const Container = styled.div<{ imageURL: string }>`
+const Container = styled.div<{ imageURL: string | null }>`
   position: fixed;
 
   top: 0;
@@ -18,10 +23,14 @@ const Container = styled.div<{ imageURL: string }>`
   width: 100%;
   height: 100%;
 
-  background-image: url(${(props) => props.imageURL});
-  background-position: center;
-  background-size: cover;
+  background-color: ${Color.LightBlack};
 
-  filter: blur(20px) opacity(0.8);
-  -webkit-filter: blur(20px) opacity(0.8);
+  &.image-background {
+    background-image: url(${(props) => props.imageURL});
+    background-position: center;
+    background-size: cover;
+
+    filter: blur(20px) opacity(0.8);
+    -webkit-filter: blur(20px) opacity(0.8);
+  }
 `;
