@@ -22,6 +22,6 @@ const Container = styled.div<{ imageURL: string }>`
   background-position: center;
   background-size: cover;
 
-  filter: blur(8px) opacity(0.8);
-  -webkit-filter: blur(8px) opacity(0.8);
+  filter: blur(20px) opacity(0.8);
+  -webkit-filter: blur(20px) opacity(0.8);
 `;
