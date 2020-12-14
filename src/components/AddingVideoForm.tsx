@@ -4,8 +4,9 @@ import { ImSpinner2 } from "react-icons/im";
 import styled from "styled-components";
 import axios from "axios";
 
-import { usePlaylist } from "../contexts/Playlist";
 import { Color } from "../constants/color";
+
+import { usePlaylist } from "../contexts/Playlist";
 
 const videoIdRegEx = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
 

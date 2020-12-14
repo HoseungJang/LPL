@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import ReactPlayer from "react-player";
 import styled from "styled-components";
+
 import { Color } from "../constants/color";
 
 import { Video } from "../contexts/Playlist";

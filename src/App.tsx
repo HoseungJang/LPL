@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { AddingVideoForm } from "./components/AddingVideoForm";
 
 import { Color } from "./constants/color";
 
 import { Background } from "./components/Background";
 import { Player } from "./components/Player";
+import { AddingVideoForm } from "./components/AddingVideoForm";
 import { Playlist } from "./components/Playlist";
 
 import { usePlaylist } from "./contexts/Playlist";

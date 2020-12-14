@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import { IoMdTrash } from "react-icons/io";
-import { usePlaylist } from "../contexts/Playlist";
 
 import { Color } from "../constants/color";
+
+import { usePlaylist } from "../contexts/Playlist";
 
 export const Playlist: React.FC = () => {
   const { playlist, removeFromPlaylist } = usePlaylist();
