@@ -24,15 +24,9 @@ export const Playlist: React.FC = () => {
 };
 
 const Container = styled.div`
-  position: relative;
-
-  z-index: 1;
-
   flex: 1;
 
   border-radius: 1px;
-
-  background-color: ${Color.BlackTransparency50};
 
   overflow-y: scroll;
 
@@ -54,8 +48,8 @@ const Container = styled.div`
     }
 
     > .thumbnail {
-      width: 90px;
-      height: 90px;
+      width: 80px;
+      height: 80px;
 
       border-radius: 50%;
     }
@@ -63,8 +57,8 @@ const Container = styled.div`
     > .title {
       flex: 1;
 
-      font-size: 0.7rem;
-      color: ${Color.White};
+      font-size: 0.9rem;
+      color: ${Color.LightGrey};
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
