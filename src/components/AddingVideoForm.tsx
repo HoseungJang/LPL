@@ -41,7 +41,7 @@ export const AddingVideoForm: React.FC = () => {
       addToPlaylist({
         url: `https://youtu.be/${matchedValues[1]}`,
         title: video.title,
-        thumbnail: video.thumbnails.maxres.url,
+        thumbnail: video.thumbnails.maxres?.url || video.thumbnails.medium?.url,
       });
 
       setInput("");
