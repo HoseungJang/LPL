@@ -3,8 +3,8 @@ export enum Color {
   Black = "#000000",
   BlackTransparency50 = "rgba(0, 0, 0, 0.5)",
   Grey = "#BDBDBD",
-  GreyTransparency50 = "rgba(189, 189, 189, 0.5)",
   DarkGrey = "#848484",
+  DarkGreyTransparency50 = "rgba(132, 132, 132, 0.5)",
   LightGrey = "#D8D8D8",
   LightBlack = "#424242",
 }
