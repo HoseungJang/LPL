@@ -55,6 +55,7 @@ export const AddingVideoForm: React.FC = () => {
       <input
         className="url-input"
         placeholder="Youtube URL"
+        value={input}
         onChange={(e) => setInput(e.target.value)}
       />
       <button
