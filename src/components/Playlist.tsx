@@ -1,25 +1,50 @@
 import React from "react";
 import styled from "styled-components";
 import { IoMdTrash } from "react-icons/io";
+import classNames from "classnames";
 
 import { Color } from "../constants/color";
 
-import { usePlaylist } from "../contexts/Playlist";
+import { usePlaylist, Video } from "../contexts/Playlist";
 
-export const Playlist: React.FC = () => {
+export const Playlist: React.FC<{
+  nowPlayingVideo: Video | null;
+  setNowPlayingVideo: (video: Video | null) => void;
+  setNextVideo: (video: Video | null) => void;
+}> = ({ nowPlayingVideo, setNowPlayingVideo, setNextVideo }) => {
   const { playlist, removeFromPlaylist } = usePlaylist();
 
   return (
     <Container>
-      {playlist.map((video) => (
-        <div key={video.id} className="video">
-          <img className="thumbnail" src={video.thumbnail} alt="thumbnail" />
-          <div className="title">{video.title}</div>
-          <button className="remove-button" onClick={() => removeFromPlaylist(video.id)}>
-            <IoMdTrash className="icon" />
-          </button>
-        </div>
-      ))}
+      {playlist.map((video, index) => {
+        if (nowPlayingVideo?.id === playlist[index - 1]?.id) {
+          setNextVideo(video);
+        }
+
+        return (
+          <div
+            key={video.id}
+            className={classNames("video", { playing: !!(nowPlayingVideo?.id === video.id) })}
+            onClick={() => setNowPlayingVideo(video)}
+          >
+            <img className="thumbnail" src={video.thumbnail} alt="thumbnail" />
+            <div className="title">{video.title}</div>
+            <button
+              className="remove-button"
+              onClick={(e) => {
+                e.stopPropagation();
+                removeFromPlaylist(video.id);
+
+                if (nowPlayingVideo?.id === video.id) {
+                  setNowPlayingVideo(playlist[index + 1] ?? null);
+                }
+              }}
+            >
+              <IoMdTrash className="icon" />
+            </button>
+          </div>
+        );
+      })}
     </Container>
   );
 };
@@ -46,7 +71,8 @@ const Container = styled.div`
 
     cursor: pointer;
 
-    &:hover {
+    &:hover,
+    &.playing {
       background-color: ${Color.DarkGreyTransparency50};
     }
 
@@ -76,17 +102,19 @@ const Container = styled.div`
 
       background-color: transparent;
 
+      color: ${Color.Grey};
+
       outline: none;
 
-      color: ${Color.LightGrey};
+      cursor: pointer;
 
       &:hover {
-        color: ${Color.Grey};
+        color: ${Color.White};
       }
 
       > .icon {
-        width: 25px;
-        height: 25px;
+        width: 30px;
+        height: 30px;
       }
     }
   }

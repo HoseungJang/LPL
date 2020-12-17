@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import { Color } from "./constants/color";
@@ -8,19 +8,28 @@ import { Player } from "./components/Player";
 import { AddingVideoForm } from "./components/AddingVideoForm";
 import { Playlist } from "./components/Playlist";
 
-import { usePlaylist } from "./contexts/Playlist";
+import { Video } from "./contexts/Playlist";
 
 export const App: React.FC = () => {
+  const [nowPlayingVideo, setNowPlayingVideo] = useState<Video | null>(null);
+  const [nextVideo, setNextVideo] = useState<Video | null>(null);
+
   return (
     <>
-      <Background imageURL={usePlaylist().playlist[0].thumbnail} />
+      <Background imageURL={nowPlayingVideo?.thumbnail ?? null} />
       <Container>
         <div className="primary">
-          <Player video={usePlaylist().playlist[0]} />
+          {nowPlayingVideo && (
+            <Player video={nowPlayingVideo} onVideoEnded={() => setNowPlayingVideo(nextVideo)} />
+          )}
         </div>
         <div className="secondary">
           <AddingVideoForm />
-          <Playlist />
+          <Playlist
+            nowPlayingVideo={nowPlayingVideo}
+            setNowPlayingVideo={setNowPlayingVideo}
+            setNextVideo={setNextVideo}
+          />
         </div>
       </Container>
     </>
@@ -45,6 +54,8 @@ const Container = styled.div`
     width: 50%;
 
     padding-right: 3%;
+
+    box-sizing: border-box;
   }
 
   > .secondary {

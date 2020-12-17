@@ -6,20 +6,24 @@ import { Color } from "../constants/color";
 
 import { Video } from "../contexts/Playlist";
 
-export const Player: React.FC<{ video: Video }> = ({ video }) => {
+export const Player: React.FC<{ video: Video; onVideoEnded?: () => void }> = ({
+  video,
+  onVideoEnded,
+}) => {
   const [playing, setPlaying] = useState(true);
   const [played, setPlayed] = useState(0);
 
   const playerRef = useRef<ReactPlayer | null>(null);
 
   return (
-    <Container>
+    <Container key={video.id}>
       <ReactPlayer
         ref={playerRef}
         className="player"
         url={video.url}
         playing={playing}
         onProgress={({ played }) => setPlayed(played)}
+        onEnded={onVideoEnded}
       />
       <img className="player-image" src={video.thumbnail} />
       <div className="duration-bar">
