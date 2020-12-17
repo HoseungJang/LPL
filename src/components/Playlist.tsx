@@ -33,7 +33,7 @@ const Container = styled.div`
 
   > * {
     &:not(:last-child) {
-      border-bottom: 1px solid ${Color.GreyTransparency50};
+      border-bottom: 1px solid ${Color.DarkGreyTransparency50};
     }
   }
 
@@ -43,6 +43,12 @@ const Container = styled.div`
 
     display: flex;
     align-items: center;
+
+    cursor: pointer;
+
+    &:hover {
+      background-color: ${Color.DarkGreyTransparency50};
+    }
 
     > * {
       margin: 0 10px;
