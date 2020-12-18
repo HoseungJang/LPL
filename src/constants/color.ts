@@ -7,4 +7,5 @@ export enum Color {
   DarkGreyTransparency50 = "rgba(132, 132, 132, 0.5)",
   LightGrey = "#D8D8D8",
   LightBlack = "#424242",
+  DarkRed = "#B40404",
 }
