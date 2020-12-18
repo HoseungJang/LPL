@@ -30,7 +30,9 @@ const Container = styled.div<{ imageURL: string | null }>`
     background-position: center;
     background-size: cover;
 
-    filter: blur(20px) opacity(0.8);
-    -webkit-filter: blur(20px) opacity(0.8);
+    -webkit-filter: blur(5px);
+    filter: blur(5px);
+
+    opacity: 0.5;
   }
 `;
