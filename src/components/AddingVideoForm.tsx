@@ -2,6 +2,7 @@ import React, { useState, useCallback } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
 import { ImSpinner2 } from "react-icons/im";
 import styled from "styled-components";
+import classNames from "classnames";
 import axios from "axios";
 
 import { Color } from "../constants/color";
@@ -46,110 +47,128 @@ export const AddingVideoForm: React.FC = () => {
 
       setInput("");
       setIsLoading(false);
+      setIsError(false);
     },
     [addToPlaylist]
   );
 
   return (
-    <Container onSubmit={(e) => e.preventDefault()}>
-      <input
-        className="url-input"
-        placeholder="Youtube URL"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-      />
-      <button
-        className="add-button"
-        onClick={() => addVideo(input)}
-        disabled={isLoading || input.length === 0}
-      >
-        {isLoading ? (
-          <ImSpinner2 className="loading-icon" />
-        ) : (
-          <AiOutlinePlus className="add-icon" />
-        )}
-      </button>
+    <Container>
+      <form onSubmit={(e) => e.preventDefault()}>
+        <input
+          className={classNames("url-input", { error: isError })}
+          placeholder="Youtube URL"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+        />
+        <button
+          className="add-button"
+          onClick={() => addVideo(input)}
+          disabled={isLoading || input.length === 0}
+        >
+          {isLoading ? (
+            <ImSpinner2 className="loading-icon" />
+          ) : (
+            <AiOutlinePlus className="add-icon" />
+          )}
+        </button>
+      </form>
+      {isError && <div className="error-message">잘못된 URL입니다</div>}
     </Container>
   );
 };
 
-const Container = styled.form`
+const Container = styled.div`
   width: 100%;
-  height: 60px;
-
-  display: flex;
+  min-height: 60px;
 
   padding: 1%;
 
   box-sizing: border-box;
 
-  > .url-input {
-    height: 100%;
+  > form {
+    width: 100%;
+    height: 60px;
 
-    flex: 1;
+    display: flex;
 
-    padding: 1%;
-    margin-right: 1%;
+    > .url-input {
+      height: 100%;
 
-    box-sizing: border-box;
+      flex: 1;
 
-    border: 0;
-    border-radius: 2px;
+      padding: 1%;
+      margin-right: 1%;
 
-    background-color: ${Color.BlackTransparency50};
+      box-sizing: border-box;
 
-    font-size: 0.9rem;
-    color: ${Color.Grey};
+      border: 0;
+      border-radius: 2px;
 
-    outline: none;
+      background-color: ${Color.BlackTransparency50};
+
+      font-size: 0.9rem;
+      color: ${Color.Grey};
+
+      outline: none;
+
+      &.error {
+        border: 1px solid ${Color.DarkRed};
+      }
+    }
+
+    > .add-button {
+      width: 15%;
+
+      border: 1px solid ${Color.Grey};
+      border-radius: 2px;
+
+      background-color: transparent;
+
+      outline: none;
+
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: ${Color.Grey};
+
+        > .add-icon,
+        .loading-icon {
+          color: ${Color.Black};
+        }
+      }
+
+      > .add-icon {
+        font-size: 1rem;
+        color: ${Color.LightGrey};
+
+        object-fit: contain;
+
+        transition: color 0.2s;
+      }
+
+      > .loading-icon {
+        font-size: 1rem;
+        color: ${Color.LightGrey};
+
+        object-fit: contain;
+
+        @keyframes spin {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
+
+        animation: spin 1s infinite;
+      }
+    }
   }
 
-  > .add-button {
-    width: 15%;
-
-    border: 1px solid ${Color.Grey};
-    border-radius: 2px;
-
-    background-color: transparent;
-
-    outline: none;
-
-    transition: background-color 0.2s;
-
-    &:hover {
-      background-color: ${Color.Grey};
-
-      > .add-icon,
-      .loading-icon {
-        color: ${Color.Black};
-      }
-    }
-
-    > .add-icon {
-      font-size: 1rem;
-      color: ${Color.LightGrey};
-
-      object-fit: contain;
-
-      transition: color 0.2s;
-    }
-
-    > .loading-icon {
-      font-size: 1rem;
-      color: ${Color.LightGrey};
-
-      object-fit: contain;
-
-      @keyframes spin {
-        from {
-          transform: rotate(0deg);
-        }
-        to {
-          transform: rotate(360deg);
-        }
-      }
-
-      animation: spin 1s infinite;
-    }
+  > .error-message {
+    font-size: 0.7rem;
+    color: ${Color.DarkRed};
   }
 `;
