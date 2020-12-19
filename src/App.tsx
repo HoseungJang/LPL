@@ -8,28 +8,19 @@ import { Player } from "./components/Player";
 import { AddingVideoForm } from "./components/AddingVideoForm";
 import { Playlist } from "./components/Playlist";
 
-import { Video } from "./contexts/Playlist";
+import { usePlaylist } from "./contexts/Playlist";
 
 export const App: React.FC = () => {
-  const [nowPlayingVideo, setNowPlayingVideo] = useState<Video | null>(null);
-  const [nextVideo, setNextVideo] = useState<Video | null>(null);
+  const { currentVideo } = usePlaylist();
 
   return (
     <>
-      <Background imageURL={nowPlayingVideo?.thumbnail ?? null} />
+      <Background imageURL={currentVideo?.thumbnail ?? null} />
       <Container>
-        <div className="primary">
-          {nowPlayingVideo && (
-            <Player video={nowPlayingVideo} onVideoEnded={() => setNowPlayingVideo(nextVideo)} />
-          )}
-        </div>
+        <div className="primary">{currentVideo && <Player video={currentVideo} />}</div>
         <div className="secondary">
           <AddingVideoForm />
-          <Playlist
-            nowPlayingVideo={nowPlayingVideo}
-            setNowPlayingVideo={setNowPlayingVideo}
-            setNextVideo={setNextVideo}
-          />
+          <Playlist />
         </div>
       </Container>
     </>
