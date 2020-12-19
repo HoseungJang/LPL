@@ -25,13 +25,14 @@ export const Player: React.FC = () => {
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if (e.key === " ") {
+        e.preventDefault();
         setPlaying((prev) => !prev);
       }
     };
 
-    window.addEventListener("keypress", handler);
+    window.addEventListener("keydown", handler);
     return () => {
-      window.removeEventListener("keypress", handler);
+      window.removeEventListener("keydown", handler);
     };
   }, []);
 
