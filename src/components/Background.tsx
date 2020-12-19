@@ -30,8 +30,8 @@ const Container = styled.div<{ imageURL: string | null }>`
     background-position: center;
     background-size: cover;
 
-    -webkit-filter: blur(5px);
-    filter: blur(5px);
+    -webkit-filter: blur(5px) contrast(50%) grayscale(50%);
+    filter: blur(5px) contrast(50%) grayscale(50%);
 
     opacity: 0.5;
   }
