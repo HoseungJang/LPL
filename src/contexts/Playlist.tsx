@@ -1,4 +1,4 @@
-import React, { useState, createContext, useEffect, useCallback, useContext } from "react";
+import React, { useState, createContext, useEffect, useContext } from "react";
 import { nanoid } from "nanoid";
 
 export type Video = {
@@ -32,30 +32,33 @@ export const PlaylistContextProvider: React.FC = ({ children }) => {
 
   useEffect(() => {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(playlist));
+    if (playlist.length === 0) {
+      setCurrentVideo(null);
+    }
   }, [playlist]);
 
-  const addToPlaylist = useCallback((video: Pick<Video, "url" | "title" | "thumbnail">) => {
+  const addToPlaylist = (video: Pick<Video, "url" | "title" | "thumbnail">) => {
     const id = nanoid();
     setPlaylist((prev) => [...prev, { id, ...video }]);
-  }, []);
+  };
 
-  const removeFromPlaylist = useCallback((id: string) => {
+  const removeFromPlaylist = (id: string) => {
     setPlaylist((prev) => prev.filter((video) => video.id !== id));
-  }, []);
+  };
 
-  const goToPrevVideo = useCallback(() => {
+  const goToPrevVideo = () => {
     if (currentVideo) {
       const currentVideoIndex = playlist.findIndex((v) => v.id === currentVideo.id);
       setCurrentVideo(playlist[currentVideoIndex - 1] ?? playlist[playlist.length - 1]);
     }
-  }, [playlist, currentVideo]);
+  };
 
-  const goToNextVideo = useCallback(() => {
+  const goToNextVideo = () => {
     if (currentVideo) {
       const currentVideoIndex = playlist.findIndex((v) => v.id === currentVideo.id);
       setCurrentVideo(playlist[currentVideoIndex + 1] ?? playlist[0]);
     }
-  }, [playlist, currentVideo]);
+  };
 
   return (
     <PlaylistContext.Provider
