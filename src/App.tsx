@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
 import { Color } from "./constants/color";
@@ -8,16 +8,14 @@ import { Player } from "./components/Player";
 import { AddingVideoForm } from "./components/AddingVideoForm";
 import { Playlist } from "./components/Playlist";
 
-import { usePlaylist } from "./contexts/Playlist";
-
 export const App: React.FC = () => {
-  const { currentVideo } = usePlaylist();
-
   return (
     <>
-      <Background imageURL={currentVideo?.thumbnail ?? null} />
+      <Background />
       <Container>
-        <div className="primary">{currentVideo && <Player video={currentVideo} />}</div>
+        <div className="primary">
+          <Player />
+        </div>
         <div className="secondary">
           <AddingVideoForm />
           <Playlist />
