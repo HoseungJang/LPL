@@ -5,46 +5,33 @@ import classNames from "classnames";
 
 import { Color } from "../constants/color";
 
-import { usePlaylist, Video } from "../contexts/Playlist";
+import { usePlaylist } from "../contexts/Playlist";
 
-export const Playlist: React.FC<{
-  nowPlayingVideo: Video | null;
-  setNowPlayingVideo: (video: Video | null) => void;
-  setNextVideo: (video: Video | null) => void;
-}> = ({ nowPlayingVideo, setNowPlayingVideo, setNextVideo }) => {
-  const { playlist, removeFromPlaylist } = usePlaylist();
+export const Playlist: React.FC = () => {
+  const { playlist, removeFromPlaylist, currentVideo, playVideo, goToNextVideo } = usePlaylist();
 
   return (
     <Container>
-      {playlist.map((video, index) => {
-        if (nowPlayingVideo?.id === playlist[index - 1]?.id) {
-          setNextVideo(video);
-        }
-
-        return (
-          <div
-            key={video.id}
-            className={classNames("video", { playing: !!(nowPlayingVideo?.id === video.id) })}
-            onClick={() => setNowPlayingVideo(video)}
+      {playlist.map((video) => (
+        <div
+          key={video.id}
+          className={classNames("video", { playing: !!(currentVideo?.id === video.id) })}
+          onClick={() => playVideo(video)}
+        >
+          <img className="thumbnail" src={video.thumbnail} alt="thumbnail" />
+          <div className="title">{video.title}</div>
+          <button
+            className="remove-button"
+            onClick={(e) => {
+              e.stopPropagation();
+              goToNextVideo();
+              removeFromPlaylist(video.id);
+            }}
           >
-            <img className="thumbnail" src={video.thumbnail} alt="thumbnail" />
-            <div className="title">{video.title}</div>
-            <button
-              className="remove-button"
-              onClick={(e) => {
-                e.stopPropagation();
-                removeFromPlaylist(video.id);
-
-                if (nowPlayingVideo?.id === video.id) {
-                  setNowPlayingVideo(playlist[index + 1] ?? null);
-                }
-              }}
-            >
-              <IoMdTrash className="icon" />
-            </button>
-          </div>
-        );
-      })}
+            <IoMdTrash className="icon" />
+          </button>
+        </div>
+      ))}
     </Container>
   );
 };
