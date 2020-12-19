@@ -7,13 +7,11 @@ import styled from "styled-components";
 
 import { Color } from "../constants/color";
 
-import { Video } from "../contexts/Playlist";
+import { usePlaylist } from "../contexts/Playlist";
 
-export const Player: React.FC<{
-  video: Video;
-  goToPrevVideo: () => void;
-  goToNextVideo: () => void;
-}> = ({ video, goToPrevVideo, goToNextVideo }) => {
+export const Player: React.FC = () => {
+  const { currentVideo, goToPrevVideo, goToNextVideo } = usePlaylist();
+
   const [playing, setPlaying] = useState(true);
 
   const [played, setPlayed] = useState(0);
@@ -24,19 +22,19 @@ export const Player: React.FC<{
 
   const playerRef = useRef<ReactPlayer | null>(null);
 
-  return (
-    <Container key={video.id}>
+  return !currentVideo ? null : (
+    <Container key={currentVideo.id}>
       <ReactPlayer
         ref={playerRef}
         className="player"
-        url={video.url}
+        url={currentVideo.url}
         playing={playing}
         volume={volume}
         muted={muted}
         onProgress={({ played }) => !isFixingProgress && setPlayed(played)}
         onEnded={() => goToNextVideo()}
       />
-      <img className="player-image" src={video.thumbnail} />
+      <img className="player-image" src={currentVideo.thumbnail} />
       <div className="duration-bar">
         <RangeBar
           type="range"
