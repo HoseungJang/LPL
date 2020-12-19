@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import ReactPlayer from "react-player";
 import { FaPlay, FaPause } from "react-icons/fa";
 import { GiSpeakerOff, GiSpeaker } from "react-icons/gi";
@@ -21,6 +21,19 @@ export const Player: React.FC = () => {
   const [muted, setMuted] = useState(false);
 
   const playerRef = useRef<ReactPlayer | null>(null);
+
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === " ") {
+        setPlaying((prev) => !prev);
+      }
+    };
+
+    window.addEventListener("keypress", handler);
+    return () => {
+      window.removeEventListener("keypress", handler);
+    };
+  }, []);
 
   return !currentVideo ? null : (
     <Container key={currentVideo.id}>
