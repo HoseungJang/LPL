@@ -4,9 +4,16 @@ import classNames from "classnames";
 
 import { Color } from "../constants/color";
 
-export const Background: React.FC<{ imageURL: string | null }> = ({ imageURL }) => {
+import { usePlaylist } from "../contexts/Playlist";
+
+export const Background: React.FC = () => {
+  const { currentVideo } = usePlaylist();
+
   return (
-    <Container className={classNames({ "image-background": !!imageURL })} imageURL={imageURL} />
+    <Container
+      className={classNames({ "image-background": !!currentVideo })}
+      imageURL={currentVideo?.thumbnail ?? null}
+    />
   );
 };
 
