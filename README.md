@@ -16,4 +16,4 @@ The name "LPL" is derived from ```Listing, Playing, Listening```. You just list 
 
 LPL supports only desktop.
 
-You'd better install AdBlock.
+I recommend you to use LPL with AdBlock.
