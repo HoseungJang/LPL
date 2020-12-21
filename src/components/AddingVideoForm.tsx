@@ -6,6 +6,7 @@ import classNames from "classnames";
 import axios from "axios";
 
 import { Color } from "../constants/color";
+import { Animation } from "../constants/animation";
 
 import { usePlaylist } from "../contexts/Playlist";
 
@@ -153,16 +154,7 @@ const Container = styled.div`
 
         object-fit: contain;
 
-        @keyframes spin {
-          from {
-            transform: rotate(0deg);
-          }
-          to {
-            transform: rotate(360deg);
-          }
-        }
-
-        animation: spin 1s infinite;
+        ${Animation.InfiniteSpin()}
       }
     }
   }

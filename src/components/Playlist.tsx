@@ -4,6 +4,7 @@ import { IoMdTrash } from "react-icons/io";
 import classNames from "classnames";
 
 import { Color } from "../constants/color";
+import { Animation } from "../constants/animation";
 
 import { usePlaylist } from "../contexts/Playlist";
 
@@ -58,9 +59,16 @@ const Container = styled.div`
 
     cursor: pointer;
 
-    &:hover,
+    &:hover {
+      background-color: ${Color.DarkGreyTransparency50};
+    }
+
     &.playing {
       background-color: ${Color.DarkGreyTransparency50};
+
+      > .thumbnail {
+        ${Animation.InfiniteSpin(5)}
+      }
     }
 
     > * {
