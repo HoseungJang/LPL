@@ -67,7 +67,7 @@ const Container = styled.div`
       background-color: ${Color.DarkGreyTransparency50};
 
       > .thumbnail {
-        ${Animation.InfiniteSpin(5)}
+        ${Animation.InfiniteSpin(13)}
       }
     }
 
