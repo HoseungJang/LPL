@@ -14,8 +14,8 @@ type PlaylistContextValue = {
   removeFromPlaylist: (id: string) => void;
   currentVideo: Video | null;
   playVideo: (video: Video | null) => void;
-  goToPrevVideo: () => void;
-  goToNextVideo: () => void;
+  goToPrevVideo: (targetIndex?: number) => void;
+  goToNextVideo: (targetIndex?: number) => void;
 };
 
 const LOCAL_STORAGE_KEY = "LPL_playlist";
@@ -53,8 +53,10 @@ export const PlaylistContextProvider: React.FC = ({ children }) => {
     }
   };
 
-  const goToNextVideo = () => {
-    if (currentVideo) {
+  const goToNextVideo = (targetIndex?: number) => {
+    if (targetIndex) {
+      setCurrentVideo(playlist[targetIndex + 1] ?? playlist[0]);
+    } else if (currentVideo) {
       const currentVideoIndex = playlist.findIndex((v) => v.id === currentVideo.id);
       setCurrentVideo(playlist[currentVideoIndex + 1] ?? playlist[0]);
     }
