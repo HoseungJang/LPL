@@ -145,6 +145,10 @@ const RangeBar = styled.input`
     background-color: ${Color.White};
 
     cursor: pointer;
+
+    &:hover {
+      background-color: ${Color.WhiteHover};
+    }
   }
 `;
 
@@ -189,6 +193,10 @@ const Container = styled.div`
       outline: none;
 
       cursor: pointer;
+
+      &:hover {
+        background-color: ${Color.WhiteHover};
+      }
 
       &:not(:last-child) {
         margin-right: 1%;
@@ -241,6 +249,12 @@ const Container = styled.div`
         outline: none;
 
         cursor: pointer;
+
+        &:hover {
+          > .icon {
+            color: ${Color.WhiteHover};
+          }
+        }
 
         > .icon {
           width: 30px;
