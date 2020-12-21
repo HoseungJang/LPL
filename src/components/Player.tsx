@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import ReactPlayer from "react-player";
+import styled from "styled-components";
 import { FaPlay, FaPause } from "react-icons/fa";
 import { GiSpeakerOff, GiSpeaker } from "react-icons/gi";
 import { BsSkipStartFill, BsSkipEndFill } from "react-icons/bs";
-import styled from "styled-components";
 
 import { Color } from "../constants/color";
 

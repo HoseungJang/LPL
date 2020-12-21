@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { IoMdTrash } from "react-icons/io";
 import classNames from "classnames";
+import { IoMdTrash } from "react-icons/io";
 
 import { Color } from "../constants/color";
 import { Animation } from "../constants/animation";
