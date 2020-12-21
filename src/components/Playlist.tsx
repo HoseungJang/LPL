@@ -13,7 +13,7 @@ export const Playlist: React.FC = () => {
 
   return (
     <Container>
-      {playlist.map((video) => (
+      {playlist.map((video, index) => (
         <div
           key={video.id}
           className={classNames("video", { playing: !!(currentVideo?.id === video.id) })}
@@ -25,7 +25,7 @@ export const Playlist: React.FC = () => {
             className="remove-button"
             onClick={(e) => {
               e.stopPropagation();
-              goToNextVideo();
+              goToNextVideo(index);
               removeFromPlaylist(video.id);
             }}
           >
