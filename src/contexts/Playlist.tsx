@@ -14,7 +14,7 @@ type PlaylistContextValue = {
   removeFromPlaylist: (id: string) => void;
   currentVideo: Video | null;
   playVideo: (video: Video | null) => void;
-  goToPrevVideo: (targetIndex?: number) => void;
+  goToPrevVideo: () => void;
   goToNextVideo: (targetIndex?: number) => void;
 };
 
